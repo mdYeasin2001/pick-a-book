@@ -1,6 +1,13 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import Book from '../Book/Book';
 
 const Home = () => {
+    const [books, setBooks] = useState([]);
+    useEffect(() => {
+        fetch('http://localhost:8080/books')
+            .then(res => res.json())
+            .then(data => setBooks(data))
+    }, []);
     return (
         <div className="container">
             <div className="row">
@@ -11,6 +18,11 @@ const Home = () => {
                     </div>
                 </div>
             </div>
+
+            <div className="row row-cols-1 row-cols-md-3 g-5 pb-5">
+                {books.map(book => <Book key={book._id} book={book}/>)}
+            </div>
+
         </div>
     );
 };
