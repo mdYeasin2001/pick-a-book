@@ -6,7 +6,7 @@ const Book = ({ book }) => {
     
     return (
         <div className="col">
-            <div className="card h-100">
+            <div className="card h-100 shadow">
                 <img src={imageURL} className="card-img-top p-3 bg-light" alt="book-cover" />
                 <div className="card-body">
                     <h4 className="card-title">{bookName}</h4>
