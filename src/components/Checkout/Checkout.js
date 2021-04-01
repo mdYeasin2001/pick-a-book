@@ -9,14 +9,14 @@ const Checkout = () => {
     const [checkoutSucceed, setCheckoutSucceed] = useState(false);
     const { bookName, price } = book;
     useEffect(() => {
-        fetch(`http://localhost:8080/book/${id}`)
+        fetch(`https://serene-stream-74348.herokuapp.com/book/${id}`)
             .then(res => res.json())
             .then(data => setBook(...data))
     }, [id]);
     const handleCheckout = () => {
         const orderInfo = { email: loggedInUser.email, bookName, price, date: new Date().toDateString('dd/MM/yyyy') };
         console.log(orderInfo);
-        fetch('http://localhost:8080/addOrder', {
+        fetch('https://serene-stream-74348.herokuapp.com/addOrder', {
             method: 'POST',
             headers: { 'Content-type': 'application/json' },
             body: JSON.stringify(orderInfo)

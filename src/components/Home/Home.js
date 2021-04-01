@@ -5,7 +5,7 @@ const Home = () => {
     const [books, setBooks] = useState([]);
     const [loading, setLoading] = useState(true);
     useEffect(() => {
-        fetch('http://localhost:8080/books')
+        fetch('https://serene-stream-74348.herokuapp.com/books')
             .then(res => res.json())
             .then(data => {
                 setBooks(data);

@@ -9,7 +9,7 @@ const Orders = () => {
     const [loading, setLoading] = useState(true)
     console.log(orders);
     useEffect(() => {
-        fetch(`http://localhost:8080/orders/?email=${email}`)
+        fetch(`https://serene-stream-74348.herokuapp.com/orders/?email=${email}`)
             .then(res => res.json())
             .then(data => {
                 setOrders(data);
