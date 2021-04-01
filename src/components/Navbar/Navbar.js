@@ -1,14 +1,27 @@
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { UserContext } from '../../App';
 import { FaUserCircle } from 'react-icons/fa';
+import firebase from "firebase/app";
+
 
 const Navbar = () => {
-    const [loggedInUser] = useContext(UserContext);
+    const [loggedInUser, setLoggedInUser] = useContext(UserContext);
+    const history = useHistory();
+    const handleLogout = () => {
+        firebase.auth().signOut().then(() => {
+            // Sign-out successful.
+            setLoggedInUser({});
+            history.push('/');
+          }).catch((error) => {
+            // An error happened.
+            console.log(error);
+          });
+    }
     return (
-        <nav className="navbar navbar-expand-lg navbar-light bg-light">
-            <div className="container">
-                <Link className="navbar-brand" to="/">Pick A Book</Link>
+        <nav className="navbar navbar-expand-lg navbar-light bg-white">
+            <div className="container fw-bold">
+                <Link className="navbar-brand fs-2" to="/">Pick <span className="text-danger">A</span> Book</Link>
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
                 </button>
@@ -21,9 +34,9 @@ const Navbar = () => {
                         {loggedInUser.email ?
                          <>
                             <span className="nav-link"><FaUserCircle className="fs-4 me-2"/>{loggedInUser.name}</span>
-                            <button className="btn btn-outline-secondary">Logout</button>
+                            <button onClick={handleLogout} className="btn btn-secondary">Logout</button>
                          </>:
-                         <Link className="btn btn-outline-secondary" to="/login">Login</Link>
+                         <Link className="btn btn-secondary" to="/login">Login</Link>
                         }
                     </div>
                 </div>

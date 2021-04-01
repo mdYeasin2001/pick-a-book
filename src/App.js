@@ -16,6 +16,7 @@ import ManageBooks from './components/ManageBooks/ManageBooks';
 import Checkout from './components/Checkout/Checkout';
 import { createContext, useState } from 'react';
 import PrivateRoute from './PrivateRoute/PrivateRoute';
+import EditBook from './components/EditBook/EditBook';
 
 export const UserContext = createContext();
 
@@ -34,7 +35,7 @@ function App() {
             <Home />
           </Route>
           <PrivateRoute path="/orders">
-            <Navbar/>
+            <Navbar />
             <Orders />
           </PrivateRoute>
           <Route exact path="/admin">
@@ -49,14 +50,17 @@ function App() {
             <AdminNavbar />
             <ManageBooks />
           </Route>
+          <Route path="/admin/editBooks">
+            <AdminNavbar />
+            <EditBook />
+          </Route>
           <Route path="/login">
             <Login />
           </Route>
           <PrivateRoute path="/books/:id">
-            <Navbar/>
+            <Navbar />
             <Checkout />
           </PrivateRoute>
-
         </Switch>
       </Router>
     </UserContext.Provider>

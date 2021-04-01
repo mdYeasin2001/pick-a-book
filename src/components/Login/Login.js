@@ -35,7 +35,7 @@ const Login = () => {
     return (
         <div style={{ height: "100vh" }} className="d-flex justify-content-center align-items-center">
             <div>
-                <button style={{ borderRadius: "2rem" }} className="btn btn-outline-light text-dark btn-lg" onClick={handleGoogleSignIn}><FcGoogle className="fs-2 me-5" />Continue with Google</button>
+                <button style={{ borderRadius: "2rem" }} className="btn btn-outline-light text-dark btn-lg shadow" onClick={handleGoogleSignIn}><FcGoogle className="fs-2 me-5" />Continue with Google</button>
             </div>
         </div>
     );

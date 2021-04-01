@@ -1,17 +1,26 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { MdDelete } from 'react-icons/md';
 import { FaPen } from 'react-icons/fa';
 
 const ManageBook = ({book}) => {
-    const {bookName, authorName, price} = book;
+    const {bookName, authorName, price , _id} = book;
+    const [bookDeleted, setBookDeleted] = useState(false);
+    const handleDeleteBook = (id) => {
+        console.log(id);
+        fetch(`http://localhost:8080/deleteBook/${id}`, {
+            method: 'DELETE'
+        })
+        .then(res => res.json())
+        .then(data => setBookDeleted(data))
+    } 
     return (
-        <tr>
+        <tr className={bookDeleted ? "d-none": ""}>
             <th scope="row" className="fw-normal">{bookName}</th>
             <td>{authorName}</td>
             <td>{price}</td>
             <td className="text-end">
                 <button className="btn btn-success me-1"><FaPen/></button>
-                <button className="btn btn-danger"><MdDelete/></button>
+                <button onClick={() => handleDeleteBook(_id)} className="btn btn-danger"><MdDelete/></button>
             </td>
         </tr>
     );

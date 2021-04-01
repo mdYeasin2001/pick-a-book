@@ -4,19 +4,23 @@ import { useForm } from 'react-hook-form';
 
 const AddBook = () => {
     const [imageURL, setImageURL] = useState(null);
+    const [addBookSucceed, setAddBookSucceed] = useState(false);
     console.log(imageURL);
     const { register, handleSubmit, watch, errors } = useForm();
     const onSubmit = data => {
-        const {bookName, authorName, price} = data;
-        const bookData = {bookName, authorName, price, imageURL}
+        const { bookName, authorName, price } = data;
+        const bookData = { bookName, authorName, price, imageURL }
         console.log(bookData)
-        fetch('http://localhost:8080/addBook', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json'},
-            body: JSON.stringify(bookData)
-        })
-        .then(res => res.json())
-        .then(data => console.log(data))
+        if (imageURL) {
+            fetch('http://localhost:8080/addBook', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(bookData)
+            })
+                .then(res => res.json())
+                .then(data => setAddBookSucceed(data))
+        }
+        
     };
 
     // console.log(watch("example"));
@@ -26,17 +30,19 @@ const AddBook = () => {
         imageData.set('key', 'c2772d06761e65ea8652500494ef14a7');
         imageData.append('image', e.target.files[0]);
         axios.post('https://api.imgbb.com/1/upload', imageData)
-          .then(function (response) {
-            setImageURL(response.data.data.display_url);
-          })
-          .catch(function (error) {
-            console.log(error);
-          });
+            .then(function (response) {
+                setImageURL(response.data.data.display_url);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
     }
+    
     return (
         <div className="container py-5">
-            <form onSubmit={handleSubmit(onSubmit)}>
-                <div className="row row-cols-1 row-cols-md-2 bg-light p-4 gx-4 rounded">
+            {addBookSucceed ||
+                <form onSubmit={handleSubmit(onSubmit)}>
+                <div className="row row-cols-1 row-cols-md-2 bg-light p-4 gx-4 rounded shadow">
                     <div className="col">
                         <div className="mb-3">
                             <label htmlFor="bookName" className="form-label">Book Name</label>
@@ -65,8 +71,12 @@ const AddBook = () => {
                     </div>
                 </div>
 
-                <input className="btn btn-secondary ms-auto d-block mt-3" type="submit" />
+                <input className="btn btn-secondary ms-auto d-block mt-3" value="Save" type="submit" />
             </form>
+            }
+            {addBookSucceed &&
+                <h1 className="display-5 pt-5 text-success text-center">Book Added Successfully.</h1>
+            }
         </div>
     );
 };
