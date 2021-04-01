@@ -40,7 +40,7 @@ const AddBook = () => {
     
     return (
         <div className="container py-5">
-            {addBookSucceed ||
+            
                 <form onSubmit={handleSubmit(onSubmit)}>
                 <div className="row row-cols-1 row-cols-md-2 bg-light p-4 gx-4 rounded shadow">
                     <div className="col">
@@ -73,10 +73,7 @@ const AddBook = () => {
 
                 <input className="btn btn-secondary ms-auto d-block mt-3" value="Save" type="submit" />
             </form>
-            }
-            {addBookSucceed &&
-                <h1 className="display-5 pt-5 text-success text-center">Book Added Successfully.</h1>
-            }
+            {addBookSucceed && alert("Book added successfully")}
         </div>
     );
 };

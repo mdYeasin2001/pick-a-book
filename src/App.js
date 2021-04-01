@@ -38,22 +38,22 @@ function App() {
             <Navbar />
             <Orders />
           </PrivateRoute>
-          <Route exact path="/admin">
+          <PrivateRoute exact path="/admin">
             <AdminNavbar />
             <AddBook />
-          </Route>
-          <Route path="/admin/addBook">
+          </PrivateRoute>
+          <PrivateRoute path="/admin/addBook">
             <AdminNavbar />
             <AddBook />
-          </Route>
-          <Route path="/admin/manageBooks">
+          </PrivateRoute>
+          <PrivateRoute path="/admin/manageBooks">
             <AdminNavbar />
             <ManageBooks />
-          </Route>
-          <Route path="/admin/editBooks">
+          </PrivateRoute>
+          <PrivateRoute path="/admin/editBooks">
             <AdminNavbar />
             <EditBook />
-          </Route>
+          </PrivateRoute>
           <Route path="/login">
             <Login />
           </Route>

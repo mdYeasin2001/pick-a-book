@@ -32,7 +32,7 @@ const Orders = () => {
                     <table className="table table-borderless text-center">
                         <thead>
                             <tr className="table-light">
-                                <th scope="col">Book Name</th>
+                                <th scope="col" className="text-start">Book Name</th>
                                 <th scope="col">Price</th>
                                 <th scope="col">Date</th>
                             </tr>
