@@ -5,12 +5,10 @@ import { useForm } from 'react-hook-form';
 const AddBook = () => {
     const [imageURL, setImageURL] = useState(null);
     const [addBookSucceed, setAddBookSucceed] = useState(false);
-    console.log(imageURL);
     const { register, handleSubmit, watch, errors } = useForm();
     const onSubmit = data => {
         const { bookName, authorName, price } = data;
         const bookData = { bookName, authorName, price, imageURL }
-        console.log(bookData)
         if (imageURL) {
             fetch('https://serene-stream-74348.herokuapp.com/addBook', {
                 method: 'POST',

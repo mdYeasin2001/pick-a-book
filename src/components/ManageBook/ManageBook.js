@@ -6,7 +6,6 @@ const ManageBook = ({book}) => {
     const {bookName, authorName, price , _id} = book;
     const [bookDeleted, setBookDeleted] = useState(false);
     const handleDeleteBook = (id) => {
-        console.log(id);
         fetch(`https://serene-stream-74348.herokuapp.com/deleteBook/${id}`, {
             method: 'DELETE'
         })
