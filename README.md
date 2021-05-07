@@ -1,4 +1,4 @@
-# Welcome to Pick-A-Book
+# Pick-A-Book
 
 Our Site Link: [Pick-A-Book](https://pick-a-book-75c5d.web.app).
 
